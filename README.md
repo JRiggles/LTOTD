@@ -17,9 +17,6 @@ The app will refresh every six (6) hours while running, but you can also click o
 
     TODO
 
-End with an example of getting some data out of the system or using it
-for a little demo
-
 ## Built With
 
   Python, using:
