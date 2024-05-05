@@ -46,11 +46,13 @@ class LTOTD(rumps.App):
         asyncio.run(self._refresh_handler())
 
     async def _refresh_handler(self) -> None:
+        """Handle running `self.get_tag` asynchronously"""
         self.title = 'Refreshing...'
         self.title = await asyncio.create_task(self.get_tag())
 
     @staticmethod
     async def get_tag() -> str:
+        """Parse `'https://lospec.com/dailies/'` for the tag of the day"""
         URL = 'https://lospec.com/dailies/'
         response = requests.get(URL)
 
