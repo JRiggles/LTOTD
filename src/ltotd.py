@@ -22,14 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 import asyncio
+import datetime as dt
 import requests
 import rumps
 from bs4 import BeautifulSoup
 
 
 class LTOTD(rumps.App):
-    SIX_HOURS = 21_600  # seconds
-
     def __init__(self) -> None:
         """
         Show the Lospec Tag of the Day in the menu bar (set as app's title)
@@ -37,8 +36,9 @@ class LTOTD(rumps.App):
         super().__init__('LTOTD', menu=['Lospec Tag of the Day', 'Refresh'])
         self.refresh_timer = rumps.Timer(
             self.refresh,
-            self.SIX_HOURS,
+            3600  # refresh every hour (3600 seconds)
         ).start()
+        self.latest_tag: str | None = None
 
     @rumps.clicked('Refresh')
     def refresh(self, _sender=None) -> None:
@@ -49,10 +49,31 @@ class LTOTD(rumps.App):
         """Handle running `self.get_tag` asynchronously"""
         self.title = 'Refreshing...'
         self.title = await asyncio.create_task(self.get_tag())
+        self.notify_on_change()
+
+    def notify_on_change(self) -> None:
+        """Check to see if the tag has been updated, notify on changes"""
+        if self.title != self.latest_tag:
+            timestamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            rumps.notification(
+                title='Lospec Tag of the Day:',
+                subtitle=f'{self.title}',
+                message=f'Last checked at {timestamp}',
+                action_button='Close',
+            )
+        # store the latest tag for comparison later
+        self.latest_tag = self.title
 
     @staticmethod
     async def get_tag() -> str:
-        """Parse `'https://lospec.com/dailies/'` for the tag of the day"""
+        """Parse `'https://lospec.com/dailies/'` for the tag of the day
+
+        Returns:
+            str: the tag of the day `#tag` -or-
+            str: `Not Today!` if no tag is found -or-
+            str: `Error: <HTTP status code>` for any response code other
+                than 200
+        """
         URL = 'https://lospec.com/dailies/'
         response = requests.get(URL)
 
