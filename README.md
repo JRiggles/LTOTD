@@ -41,7 +41,7 @@ NOTE: Official release is on hold pending updates to the Lospec API, at which po
 
 This project follows [Semantic Versioning](http://semver.org/), a.k.a SEMVER
 
-## Thanks to Lospec
+## Acknowledgements
 
 Lospec was created and is maintained by Sam Keddy, a.k.a [Skeddles](https://github.com/Skeddles)
 
