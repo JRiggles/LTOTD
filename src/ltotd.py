@@ -36,7 +36,7 @@ class LTOTD(rumps.App):
         super().__init__('LTOTD', menu=['Lospec Tag of the Day', 'Refresh'])
         self.refresh_timer = rumps.Timer(
             self.refresh,
-            10  # refresh every hour (3600 seconds)
+            3600  # refresh every hour (3600 seconds)
         ).start()
         self.latest_tag: str | None = None
 
