@@ -25,7 +25,7 @@ You'll get a notification from the app when the `#tag` changes
 
 ## Installation
 
-NOTE: Official release is on hold pending updates to the Lospec API, at which point I will update the app to make use of the official endpoint instead of scraping. This app should be considered only as a proof-of-concept.
+NOTE: Official release is on hold pending updates to the [Lospec API](https://lospec.com/palettes/api), at which point I will update the app to make use of the official endpoint instead of scraping. This app should be considered only as a proof-of-concept.
 
     TODO
 
