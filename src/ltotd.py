@@ -36,7 +36,7 @@ class LTOTD(rumps.App):
         super().__init__('LTOTD', menu=['Lospec Tag of the Day', 'Refresh'])
         self.refresh_timer = rumps.Timer(
             self.refresh,
-            3600  # refresh every hour (3600 seconds)
+            10  # refresh every hour (3600 seconds)
         ).start()
         self.latest_tag: str | None = None
 
@@ -48,7 +48,7 @@ class LTOTD(rumps.App):
     async def _refresh_handler(self) -> None:
         """Handle running `self.get_tag` asynchronously"""
         self.title = 'Refreshing...'
-        self.title = await asyncio.create_task(self.get_tag())
+        self.title = await self.get_tag()
         self.notify_on_change()
 
     def notify_on_change(self) -> None:
