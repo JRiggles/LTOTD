@@ -1,3 +1,4 @@
 beautifulsoup4
+py2app
 requests
 rumps
