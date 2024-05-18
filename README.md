@@ -29,6 +29,22 @@ NOTE: Official release is on hold pending updates to the [Lospec API](https://lo
 
     TODO
 
+### Build it Yourself
+
+In lieu of a proper release for now, you can build the app yourself!
+
+> [!NOTE]
+> You'll need Python installed (this app was built using Python 3.12)
+
+1. Clone this repo
+2. Open a terminal and navigate to the root of the cloned directory, **LTOTD**
+3. Run the command `pip install -r requirements.txt` to install the necessary dependencies
+4. Run the command `python setup.py py2app` to build the app
+
+If everything worked, you'll find the app here:
+
+`{wherever you cloned the repo}/LTOTD/dist/LTOTD`
+
 ## Built With Python
 
   Using...
@@ -36,7 +52,6 @@ NOTE: Official release is on hold pending updates to the [Lospec API](https://lo
   - [py2app](https://py2app.readthedocs.io/en/latest/index.htm)
   - [Requests](https://requests.readthedocs.io/en/latest/)
   - [Rumps](https://github.com/jaredks/rumps?tab=readme-ov-file)
-
 ## Versioning
 
 This project follows [Semantic Versioning](http://semver.org/), a.k.a SEMVER
