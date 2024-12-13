@@ -21,29 +21,25 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-import asyncio
 import datetime as dt
-import requests
 import rumps
+from asyncio import run
 from bs4 import BeautifulSoup
+from requests import get
 
 
 class LTOTD(rumps.App):
     def __init__(self) -> None:
-        """
-        Show the Lospec Tag of the Day in the menu bar (set as app's title)
-        """
+        """Show the Lospec Tag of the Day in the menu bar (as app's title)"""
         super().__init__('LTOTD', menu=['Lospec Tag of the Day', 'Refresh'])
-        self.refresh_timer = rumps.Timer(
-            self.refresh,
-            3600  # refresh every hour (3600 seconds)
-        ).start()
+        # refresh every hour (3600 seconds)
+        rumps.Timer(self.refresh, 3600).start()
         self.latest_tag: str | None = None
 
     @rumps.clicked('Refresh')
     def refresh(self, _sender=None) -> None:
         """Manually refresh on menu item click"""
-        asyncio.run(self._refresh_handler())
+        run(self._refresh_handler())
 
     async def _refresh_handler(self) -> None:
         """Handle running `self.get_tag` asynchronously"""
@@ -70,12 +66,12 @@ class LTOTD(rumps.App):
 
         Returns:
             str: the tag of the day `#tag` -or-
-            str: `Not Today!` if no tag is found -or-
+            str: `No Tag Found` if no tag is found -or-
             str: `Error: <HTTP status code>` for any response code other
-                than 200
+            than 200
         """
         URL = 'https://lospec.com/dailies/'
-        response = requests.get(URL)
+        response = get(URL)
 
         if (status := response.status_code) == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
@@ -83,7 +79,7 @@ class LTOTD(rumps.App):
             if tag_div := soup.find('div', class_='daily tag'):
                 return tag_div.text.strip()
             else:
-                return 'Not Today!'
+                return 'No Tag Found'
         else:
             return f'ERROR: {status}'
 
