@@ -5,9 +5,10 @@
 
 A Mac OS menu bar app that displays the "Tag of the Day" from [Lospec](https://lospec.com)
 
-> Current Version: 0.2.2 - initial development
+> Current Version: 0.2.3
 
 ### Latest Changes:
+- *v0.2.3* New app icon, clean up imports, better "No Tag Found" message, light cleanup/refactoring
 - *v0.2.2* Patch: fix bad refresh time from v0.2.1 (oops!)
 - *v0.2.1* Patch: fix async call in `_refresh_handler()`
 
