@@ -1,7 +1,7 @@
 from setuptools import setup
 
 APP = ['src/ltotd.py']
-VERSION = '0.2.2'
+VERSION = '0.2.3'
 DATA_FILES = []
 OPTIONS = {
     'argv_emulation': False,
