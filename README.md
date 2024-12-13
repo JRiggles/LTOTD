@@ -44,7 +44,7 @@ In lieu of a proper release for now, you can build the app yourself!
 
 If everything worked, you'll find the app here:
 
-`{wherever you cloned the repo}/LTOTD/dist/LTOTD`
+`{wherever you cloned the repo}/LTOTD/dist/LTOTD.app`
 
 ## Built With Python
 
