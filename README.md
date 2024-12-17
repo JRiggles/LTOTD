@@ -14,9 +14,9 @@ A **Mac OS** menu bar app that displays the "Tag of the Day" from [Lospec](https
 
 <img src="screenshots/main.png" alt="a screenshot of the main application menu" />
 
-Start the app and it will automatically fetch the Tag of the Day
+Start the app and it will automatically fetch the [Tag of the Day](https://lospec.com/dailies/)
 
-The app will refresh every hour while running, but you can also click on "Refresh" in the menu to refresh manually
+The app will refresh **every hour** while running, but you can also click on "Refresh" in the menu to refresh manually
 
 You'll get a notification from the app when the `#tag` changes
 
@@ -38,23 +38,19 @@ In lieu of a proper release for now, you can build the app yourself!
 
 1. Clone this repo
 2. Open a terminal and navigate to the root of the cloned directory, **LTOTD**
-3. Run the command `pip install -r requirements.txt` to install the necessary dependencies
+3. Run the command `pip install -r requirements.txt` to install the necessary dependencies (you may want to do this in a `venv`, but it's not strictly required)
 4. Run the command `python setup.py py2app` to build the app
 
 If everything worked, you'll find the app here:
 
 `{wherever you cloned the repo}/LTOTD/dist/LTOTD.app`
 
-## Built With Python
+## Dependencies
 
-  Using...
   - [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
   - [py2app](https://py2app.readthedocs.io/en/latest/index.htm)
   - [Requests](https://requests.readthedocs.io/en/latest/)
   - [Rumps](https://github.com/jaredks/rumps?tab=readme-ov-file)
-## Versioning
-
-This project follows [Semantic Versioning](http://semver.org/), a.k.a SEMVER
 
 ## Acknowledgements
 
