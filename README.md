@@ -48,7 +48,7 @@ If everything worked, you'll find the app here:
 ## Dependencies
 
   - [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
-  - [py2app](https://py2app.readthedocs.io/en/latest/index.htm)
+  - [py2app](https://py2app.readthedocs.io/en/latest/index.html)
   - [Requests](https://requests.readthedocs.io/en/latest/)
   - [Rumps](https://github.com/jaredks/rumps?tab=readme-ov-file)
 
