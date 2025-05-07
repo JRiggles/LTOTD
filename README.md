@@ -5,10 +5,10 @@
 
 A **Mac OS** menu bar app that displays the "Tag of the Day" from [Lospec](https://lospec.com)
 
-<img src="https://badgen.net/badge/latest/0.2.3"/>
+<img src="https://badgen.net/badge/latest/0.2.4"/>
 
 ### Changes:
-- *v0.2.3* New app icon, clean up imports, better "No Tag Found" message, light cleanup/refactoring
+- *v0.2.4* Update app icon to use Lospec brand colors
 
 ## Getting Started
 
