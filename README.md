@@ -27,6 +27,13 @@ You'll get a notification from the app when the `#tag` changes
 ## Installation
 You can download the latest release [here](https://github.com/JRiggles/LTOTD/releases/download/v1.0.0/LTOTD.app.zip)
 
+> [!IMPORTANT]
+> If you get a warning message like this one when you try to open the app, just click "Cancel":
+> <img src="screenshots/quarantine.png" alt="a screenshot of a typical notification from this app" />
+> This is apparently caused by MacOS being overzealous about quarantining 3rd-party applications.
+> To fix the issue, simply run the following command in your terminal:
+> `xattr -d com.apple.quarantine /path/to/LTOD.app`
+
 *or you can...*
 
 ### Build it Yourself
