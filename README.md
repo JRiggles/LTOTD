@@ -25,8 +25,7 @@ You'll get a notification from the app when the `#tag` changes
 <img src="screenshots/notification.png" alt="a screenshot of a typical notification from this app" />
 
 ## Installation
-
-    TODO
+You can download the latest release [here](https://github.com/JRiggles/LTOTD/releases/download/v1.0.0/LTOTD.app.zip)
 
 *or you can...*
 
