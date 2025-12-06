@@ -1,7 +1,7 @@
 from setuptools import setup
 
 APP = ['src/ltotd.py']
-VERSION = '0.2.4'
+VERSION = '1.0.0'
 DATA_FILES = []
 OPTIONS = {
     'argv_emulation': False,
@@ -11,10 +11,10 @@ OPTIONS = {
         'CFBundleShortVersionString': VERSION,
         'LSUIElement': True,  # menu bar app
         'NSHumanReadableCopyright': (
-            'Copyright © 2024 John Riggles [sudo_whoami] - MIT License'
+            'Copyright © 2024-25 John Riggles [sudo_whoami] - MIT License'
         ),
     },
-    'packages': ['bs4', 'requests', 'rumps',],
+    'packages': ['httpx', 'rumps',],
 }
 
 setup(

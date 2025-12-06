@@ -5,10 +5,12 @@
 
 A **Mac OS** menu bar app that displays the "Tag of the Day" from [Lospec](https://lospec.com)
 
-<img src="https://badgen.net/badge/latest/0.2.4"/>
+<img src="https://badgen.net/badge/latest/1.0.0"/>
 
 ### Changes:
-- *v0.2.4* Update app icon to use Lospec brand colors
+**v1.0.0** - Official release!
+
+Thanks to a recent update to the Lospec API, we can now access the Lospec Dailies "Tag of the Day" without having to scrape the webpage (thanks [Skeddles](https://lospec.com/skeddles)!)
 
 ## Getting Started
 
@@ -24,21 +26,20 @@ You'll get a notification from the app when the `#tag` changes
 
 ## Installation
 
-> [!IMPORTANT]
-> Official release is on hold pending updates to the [Lospec API](https://lospec.com/palettes/api), at which point I will update the app to make use of the official endpoint instead of scraping. This app should be considered only as a proof-of-concept.
-
     TODO
 
-### Build it Yourself
+*or you can...*
 
-In lieu of a proper release for now, you can build the app yourself!
+### Build it Yourself
+If you're feeling motivated, you can also build the app yourself!
 
 > [!NOTE]
-> You'll need Python installed (this app was built using Python 3.12)
+> You'll need Python installed (this app was built using Python 3.14)
 
 1. Clone this repo
 2. Open a terminal and navigate to the root of the cloned directory, **LTOTD**
-3. Run the command `pip install -r requirements.txt` to install the necessary dependencies (you may want to do this in a `venv`, but it's not strictly required)
+3. ***OPTIONAL*** - set up and activate a virtual environment using `venv` or something similar
+3. Run the command `pip install -r requirements.txt` to install the necessary dependencies
 4. Run the command `python setup.py py2app` to build the app
 
 If everything worked, you'll find the app here:
@@ -46,14 +47,14 @@ If everything worked, you'll find the app here:
 `{wherever you cloned the repo}/LTOTD/dist/LTOTD.app`
 
 ## Dependencies
-
-  - [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/)
+  - [httpx](https://github.com/encode/httpx)
   - [py2app](https://py2app.readthedocs.io/en/latest/index.html)
-  - [Requests](https://requests.readthedocs.io/en/latest/)
-  - [Rumps](https://github.com/jaredks/rumps?tab=readme-ov-file)
+  - [rumps](https://github.com/jaredks/rumps?tab=readme-ov-file)
+
+## TODO
+  - Windows support (coming soon!)
 
 ## Acknowledgements
-
 Lospec was created and is maintained by Sam Keddy, a.k.a [Skeddles](https://github.com/Skeddles)
 
 - [Lospec on Patreon](https://www.patreon.com/lospec)

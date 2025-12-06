@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2024 John Riggles [sudo_whoami]
+Copyright (c) 2024-25 John Riggles [sudo_whoami]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 import datetime as dt
-import rumps
 from asyncio import run
-from bs4 import BeautifulSoup
-from requests import get
+
+import rumps
+from httpx import get
 
 
 class LTOTD(rumps.App):
@@ -62,7 +62,8 @@ class LTOTD(rumps.App):
 
     @staticmethod
     async def get_tag() -> str:
-        """Parse `'https://lospec.com/dailies/'` for the tag of the day
+        """Query `https://lospec.com/dailies/current-daily-tag.txt` for the tag
+        of the day
 
         Returns:
             str: the tag of the day `#tag` -or-
@@ -70,14 +71,16 @@ class LTOTD(rumps.App):
             str: `Error: <HTTP status code>` for any response code other
             than 200
         """
-        URL = 'https://lospec.com/dailies/'
+        URL = 'https://lospec.com/dailies/current-daily-tag.txt'
+        # FIXME: AsyncClient doesn't seem to work in the built app, despite
+        # working when just running the script...fix TBD, for now, 'get' works
+        # async with AsyncClient() as client:
+            # response = await client.get(URL)
         response = get(URL)
 
         if (status := response.status_code) == 200:
-            soup = BeautifulSoup(response.content, 'html.parser')
-            # find the <div> with class='daily tag' and get its text
-            if tag_div := soup.find('div', class_='daily tag'):
-                return tag_div.text.strip()
+            if tag := response.text.strip():
+                return f'#{tag}'
             else:
                 return 'No Tag Found'
         else:
