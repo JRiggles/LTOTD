@@ -5,10 +5,13 @@
 
 A **Mac OS** menu bar app that displays the "Tag of the Day" from [Lospec](https://lospec.com)
 
-<img src="https://badgen.net/badge/latest/1.0.0"/>
+<img src="https://badgen.net/badge/latest/1.1.0"/>
 
 ### Changes:
-**v1.0.0** - Official release!
+**v1.1.0** - Adds the option to enable or disable notifications
+
+>[!NOTE]
+>Due to limitations with the `rumps` framework, changing this preference doesn't update the notification permissions shown in MacOS System Settings
 
 Thanks to a recent update to the Lospec API, we can now access the Lospec Dailies "Tag of the Day" without having to scrape the webpage (thanks [Skeddles](https://lospec.com/skeddles)!)
 
