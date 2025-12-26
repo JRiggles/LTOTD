@@ -23,6 +23,8 @@ SOFTWARE.
 """
 import datetime as dt
 from asyncio import run
+from json import dump, load
+from pathlib import Path
 
 import rumps
 from httpx import get
@@ -31,10 +33,32 @@ from httpx import get
 class LTOTD(rumps.App):
     def __init__(self) -> None:
         """Show the Lospec Tag of the Day in the menu bar (as app's title)"""
-        super().__init__('LTOTD', menu=['Lospec Tag of the Day', 'Refresh'])
+        super().__init__(
+            'LTOTD',
+            menu=[
+                'Lospec Tag of the Day',  # disabled, used as title
+                rumps.separator,
+                'Refresh',
+                'Show Notifications',
+                # 'Quit' is added automatically
+            ]
+        )
         # refresh every hour (3600 seconds)
         rumps.Timer(self.refresh, 3600).start()
+        # initialize latest_tag for comparison
         self.latest_tag: str | None = None
+        # create data.json in Application Support directory if it doesn't exist
+        self._create_app_storage()
+        # load user's notification preference from Application Support
+        self.menu['Show Notifications'].state = (
+            self.load_notification_preference()
+        )
+
+    def _create_app_storage(self) -> None:
+        data_file = Path(rumps.application_support('LTOTD')) / 'data.json'
+        if not data_file.exists():
+            with data_file.open('w') as prefs:
+                dump({'notifications_enabled': True}, prefs)
 
     @rumps.clicked('Refresh')
     def refresh(self, _sender=None) -> None:
@@ -45,7 +69,34 @@ class LTOTD(rumps.App):
         """Handle running `self.get_tag` asynchronously"""
         self.title = 'Refreshing...'
         self.title = await self.get_tag()
-        self.notify_on_change()
+        if self.menu['Show Notifications'].state:
+            self.notify_on_change()
+
+    @rumps.clicked('Show Notifications')
+    def show_notifications(self, sender) -> None:
+        """Enable or disable notifications on menu item click"""
+        # NOTE: due to limitations in rumps, changing this state won't update
+        # the notification permssions in macOS System Settings
+        sender.state = not sender.state
+        self.save_notification_preference()
+
+    def load_notification_preference(self) -> bool:
+        """
+        Load the user's notification preference from persistent storage in the
+        Application Support directory
+        """
+        with self.open('data.json', 'r') as prefs:
+            data = load(prefs)
+            return data.get('notifications_enabled', False)
+
+    def save_notification_preference(self) -> None:
+        """
+        Save the user's notification preference to persistent storage in the
+        Application Support directory
+        """
+        with self.open('data.json', 'w') as prefs:
+            state = self.menu['Show Notifications'].state
+            dump({'notifications_enabled': state}, prefs)
 
     def notify_on_change(self) -> None:
         """Check to see if the tag has been updated, notify on changes"""
