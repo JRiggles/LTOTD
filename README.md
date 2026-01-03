@@ -1,4 +1,4 @@
-<img src="src/appicon.png" alt="app icon - a stylized pixel-art image of a lightbulb"/>
+<img src="src/appicon.png" alt="app icon - a pixel art paper tag with an 'L' on it"/>
 
 # LTOTD
 ### "Lospec Tag of the Day"
